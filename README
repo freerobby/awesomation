@@ -1,5 +1,7 @@
-Awesomation is a heroku-compatible, public-facing web client that powers a HomeRemote Wireless Home Automation Gateway.
-Available at Amazon.com: http://amzn.to/gBnjKa
+Awesomation is a heroku-compatible web server that powers a HomeRemote Wireless Home Automation Gateway.
+The Gateway (model HRGZ1) is available at Amazon.com: http://amzn.to/gBnjKa for $99.99 (as of Nov 23, 2010).
+
+Awesomation was built by reverse engineering the HRGZ1's native web interface, determining the web requests that invoke the various automation calls, and recreating those requests from a remote, public-facing server (Awesomation on heroku). It is accurate as of firmware revision 0.5200.
 
 Awesomation requires the following environment variables to be set:
 
@@ -11,10 +13,13 @@ Awesomation requires the following environment variables to be set:
   Username for accessing HRWHA Gateway. Should be an email address.
 - GATEWAY_PASSWORD
   Password for accessing HRWHA Gateway.
+
+Awesomation makes use of the following optional environment variables, if they are set:
+
 - BASICAUTH_USERNAME
-  Optional. Username to use for HTTP Basic Auth when making action calls to Awesomation.
+  Username to use for HTTP Basic Auth when making action calls to Awesomation.
 - BASICAUTH_PASSWORD
-  Optional. Password to use for HTTP Basic Auth when making action calls to Awesomation.
+  Password to use for HTTP Basic Auth when making action calls to Awesomation.
 
 For bash (development), use "export KEY=value"
 For heroku (production), use "heroku config:add KEY=value"
