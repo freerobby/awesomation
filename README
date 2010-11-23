@@ -11,6 +11,10 @@ Awesomation requires the following environment variables to be set:
   Username for accessing HRWHA Gateway. Should be an email address.
 - GATEWAY_PASSWORD
   Password for accessing HRWHA Gateway.
+- BASICAUTH_USERNAME
+  Optional. Username to use for HTTP Basic Auth when making action calls to Awesomation.
+- BASICAUTH_PASSWORD
+  Optional. Password to use for HTTP Basic Auth when making action calls to Awesomation.
 
 For bash (development), use "export KEY=value"
 For heroku (production), use "heroku config:add KEY=value"
