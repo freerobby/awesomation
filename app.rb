@@ -7,12 +7,12 @@ get '/' do
 end
 
 # Turn a node on
-get '/appliance/:node_id/on' do
+get '/appliances/:node_id/on' do
   new_gateway.turn_appliance_on(params[:node_id])
 end
 
 # Turn a node off
-get '/appliance/:node_id/off' do
+get '/appliances/:node_id/off' do
   new_gateway.turn_appliance_off(params[:node_id])
 end
 
