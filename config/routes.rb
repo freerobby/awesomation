@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   post 'devices/:id/on' => 'wemo#on'
   post 'devices/:id/off' => 'wemo#off'
+  post 'announce' => 'announcement#say'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

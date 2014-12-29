@@ -22,3 +22,7 @@ and making POST requests to turn them on and off:
 
     curl -X POST http://localhost:3000/devices/1/on -d ''
     curl -X POST http://localhost:3000/devices/1/off -d ''
+
+You can announce things via the Announce API:
+
+    curl --data "statement='Hilarious'&voice=hysterical&words_per_minute=300" http://localhost:3000/announce
