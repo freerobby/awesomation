@@ -4,6 +4,12 @@ Awesomation is a web server that interacts with [Belkin WeMo switches](http://ww
 
 Run a rails console via `rails c` and run:
 
-    WemoSwitch.create_devices
+    WemoSwitch.create_devices!
 
 This will create database entries for all devices on your local network.
+
+That's it! You can now control your devices a la:
+
+    switch = WemoSwitch.first
+    switch.turn_on!
+    switch.turn_off!
