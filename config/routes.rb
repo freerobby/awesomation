@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   post 'devices/:id/on' => 'wemo#on'
   post 'devices/:id/off' => 'wemo#off'
   post 'announce' => 'announcement#say'
+  post 'play_youtube_audio' => 'announcement#play_youtube_audio'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

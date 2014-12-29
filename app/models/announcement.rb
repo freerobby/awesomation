@@ -6,13 +6,24 @@ class Announcement
 
   ALL_VOICES = FEMALE_VOICES + MALE_VOICES + NOVELTY_VOICES
 
+
   def self.random_voice
     ALL_VOICES.sample
   end
 
+
   def self.say(statement, voice = random_voice, words_per_minute = 180)
     command = %Q(say "#{statement.gsub('"', '')}" -v "#{voice.to_s.titleize}" -r #{words_per_minute})
     `#{command}`
+    true
+  end
+
+
+  def self.play_youtube_audio(url)
+    command = %Q(wget -q -O - `youtube-dl -g #{url}` | ffmpeg -i - -f mp3 -vn -acodec libmp3lame - | mpg123 -)
+    Kernel.fork do
+      `#{command}`
+    end
     true
   end
 end

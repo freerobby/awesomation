@@ -1,6 +1,7 @@
 class AnnouncementController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
+
   def say
     params.require(:statement)
     params.permit([:voice, :words_per_minute])
@@ -12,6 +13,14 @@ class AnnouncementController < ApplicationController
     else
       Announcement.say(params[:statement])
     end
+
+    render text: 'OK'
+  end
+
+
+  def play_youtube_audio
+    params.require(:url)
+    Announcement.play_youtube_audio(params[:url])
 
     render text: 'OK'
   end
