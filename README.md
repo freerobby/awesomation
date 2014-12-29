@@ -2,6 +2,12 @@ Awesomation is a web server that interacts with [Belkin WeMo switches](http://ww
 
 # Getting started
 
+Install mplayer:
+
+    brew install youtube-dl
+    brew install mpg123
+    brew install ffmpeg
+
 Run a rails console via `rails c` and run:
 
     WemoSwitch.create_devices!
@@ -25,4 +31,8 @@ and making POST requests to turn them on and off:
 
 You can announce things via the Announce API:
 
-    curl --data "statement='Hilarious'&voice=hysterical&words_per_minute=300" http://localhost:3000/announce
+    curl --data "statement='Hilarious'&voice=hysterical&words_per_minute=300" http://localhost:3000/say
+
+Or play youtube audio!
+
+    curl --data "url=https://www.youtube.com/watch?v=AVr_6kE1vio" http://localhost:3000/play_youtube_audio
