@@ -1,4 +1,32 @@
 describe WemoSwitch do
+  describe 'private methods' do
+    describe '#is_on?' do
+      before do
+        @switch = create :wemo_switch
+      end
+      it 'is true when get_state is 1' do
+        allow(@switch).to receive(:get_state).and_return('1')
+        expect(@switch.send :is_on?).to be_truthy
+      end
+      it 'is false when get_state is 0' do
+        allow(@switch).to receive(:get_state).and_return('0')
+        expect(@switch.send :is_on?).to be_falsey
+      end
+    end
+    describe '#is_off?' do
+      before do
+        @switch = create :wemo_switch
+      end
+      it 'is true when get_state is 0' do
+        allow(@switch).to receive(:get_state).and_return('0')
+        expect(@switch.send :is_off?).to be_truthy
+      end
+      it 'is false when get_state is 1' do
+        allow(@switch).to receive(:get_state).and_return('1')
+        expect(@switch.send :is_off?).to be_falsey
+      end
+    end
+  end
   describe '#turn_on!' do
     before do
       @switch = create :wemo_switch
