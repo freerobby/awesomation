@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'playful', git: 'git@github.com:turboladen/playful.git'
+gem 'log_switch', '~> 0.4.0' # 1.x not yet compatible with playful, see https://github.com/turboladen/playful/issues/13
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
