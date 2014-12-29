@@ -13,3 +13,12 @@ That's it! You can now control your devices a la:
     switch = WemoSwitch.first
     switch.turn_on!
     switch.turn_off!
+
+Once your devices are configured, you can control them by running a server:
+
+    rails s
+
+and making POST requests to turn them on and off:
+
+    curl -X POST http://localhost:3000/devices/1/on -d ''
+    curl -X POST http://localhost:3000/devices/1/off -d ''
