@@ -6,6 +6,7 @@ class Announcement
 
   ALL_VOICES = FEMALE_VOICES + MALE_VOICES + NOVELTY_VOICES
 
+  @@player_threads = []
 
   def self.random_voice
     ALL_VOICES.sample
@@ -23,15 +24,17 @@ class Announcement
     scale = (32768 * volume).to_i
     command = %Q(wget -q -O - `youtube-dl -g #{url}` | ffmpeg -i - -f mp3 -vn -acodec libmp3lame - | mpg123 -k #{skip_frames} --scale #{scale} -)
     stop_youtube_audio
-    thread = Thread.new do
+    @@player_threads << Thread.new do
       `#{command}`
     end
-    Rails.cache.write('player_thread', thread)
     true
   end
 
 
   def self.stop_youtube_audio
-    Thread.kill(Rails.cache.read('player_thread')) if Rails.cache.read('player_thread')
+    puts @@player_threads.inspect
+    @@player_threads.each do |t|
+      Thread.kill(t)
+    end
   end
 end
