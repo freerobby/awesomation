@@ -25,8 +25,7 @@ class AnnouncementController < ApplicationController
 
     if params[:volume] && params[:skip_frames]
       Announcement.play_youtube_audio(params[:url], params[:volume].to_f, params[:skip_frames].to_i)
-    end
-    if params[:volume]
+    elsif params[:volume]
       Announcement.play_youtube_audio(params[:url], params[:volume].to_f)
     else
       Announcement.play_youtube_audio(params[:url])

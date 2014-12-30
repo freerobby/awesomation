@@ -32,6 +32,6 @@ class Announcement
 
 
   def self.stop_youtube_audio
-    @@player_thread.kill if @@player_thread
+    Thread.kill(@@player_thread) if defined?(@@player_thread) && @@player_thread
   end
 end
