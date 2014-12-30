@@ -35,6 +35,7 @@ class Announcement
     puts @@player_threads.inspect
     @@player_threads.each do |t|
       Thread.kill(t)
+      t.terminate
     end
   end
 end
