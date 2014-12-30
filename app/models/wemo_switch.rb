@@ -47,6 +47,14 @@ class WemoSwitch < ActiveRecord::Base
     get_state
   end
 
+  def timer!(time_in_seconds)
+    Thread.new do
+      turn_on!
+      sleep time_in_seconds
+      turn_off!
+    end
+  end
+
   private
   def device_uri
     "http://#{ip_address}:#{port}"

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   post 'devices/:id/on' => 'wemo#on'
   post 'devices/:id/off' => 'wemo#off'
+  post 'devices/:id/timer' => 'wemo#timer'
   post 'say' => 'announcement#say'
   post 'play_youtube_audio' => 'announcement#play_youtube_audio'
 

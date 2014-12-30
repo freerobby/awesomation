@@ -12,6 +12,12 @@ class WemoController < ApplicationController
     render text: 'OK'
   end
 
+  def timer
+    params.require(:time)
+    @switch.timer!(params[:time].to_i)
+    render text: 'OK'
+  end
+
   private
   def load_switch
     params.permit[:id]
