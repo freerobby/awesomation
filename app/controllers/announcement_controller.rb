@@ -31,4 +31,10 @@ class AnnouncementController < ApplicationController
     render text: 'OK'
   end
 
+
+  def stop_youtube_audio
+    Announcement.stop_youtube_audio
+    render text: 'OK'
+  end
+
 end
