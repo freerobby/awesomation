@@ -25,6 +25,7 @@ class Announcement
     stop_youtube_audio
     @@player_thread = Thread.new do
       `#{command}`
+      @@player_thread = nil
     end
     true
   end
