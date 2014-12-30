@@ -19,8 +19,9 @@ class Announcement
   end
 
 
-  def self.play_youtube_audio(url)
-    command = %Q(wget -q -O - `youtube-dl -g #{url}` | ffmpeg -i - -f mp3 -vn -acodec libmp3lame - | mpg123 -)
+  def self.play_youtube_audio(url, volume = 1.0)
+    scale = (32768 * volume).to_i
+    command = %Q(wget -q -O - `youtube-dl -g #{url}` | ffmpeg -i - -f mp3 -vn -acodec libmp3lame - | mpg123 --scale #{scale} -)
     Kernel.fork do
       `#{command}`
     end

@@ -35,4 +35,4 @@ You can announce things via the Announce API:
 
 Or play youtube audio!
 
-    curl --data "url=https://www.youtube.com/watch?v=AVr_6kE1vio" http://localhost:3000/play_youtube_audio
+    curl --data "url=https://www.youtube.com/watch?v=AVr_6kE1vio&volume=.5" http://localhost:3000/play_youtube_audio
