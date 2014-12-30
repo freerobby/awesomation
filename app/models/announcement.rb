@@ -23,7 +23,7 @@ class Announcement
     scale = (32768 * volume).to_i
     command = %Q(wget -q -O - `youtube-dl -g #{url}` | ffmpeg -i - -f mp3 -vn -acodec libmp3lame - | mpg123 -k #{skip_frames} --scale #{scale} -)
     stop_youtube_audio
-    @@player_thread = Thread.new do
+    Rails.cache['player_thread'] = Thread.new do
       `#{command}`
     end
     true
@@ -31,6 +31,6 @@ class Announcement
 
 
   def self.stop_youtube_audio
-    Thread.kill(@@player_thread) if defined?(@@player_thread) && @@player_thread
+    Thread.kill(Rails.cache['player_thread']) if Rails.cache['player_thread']
   end
 end
