@@ -25,7 +25,7 @@ class Announcement
     command = %Q(wget -q -O - `youtube-dl -g #{url}` | ffmpeg -i - -f mp3 -vn -acodec libmp3lame - | mpg123 -k #{skip_frames} --scale #{scale} -)
     stop_youtube_audio
     @@player_threads << Thread.new do
-      `#{command}`
+      system(command)
     end
     true
   end
