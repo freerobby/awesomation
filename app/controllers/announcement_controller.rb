@@ -21,7 +21,11 @@ class AnnouncementController < ApplicationController
   def play_youtube_audio
     params.require(:url)
     params.permit(:volume)
+    params.permit(:skip_frames)
 
+    if params[:volume] && params[:skip_frames]
+      Announcement.play_youtube_audio(params[:url], params[:volume].to_f, params[:skip_frames].to_i)
+    end
     if params[:volume]
       Announcement.play_youtube_audio(params[:url], params[:volume].to_f)
     else

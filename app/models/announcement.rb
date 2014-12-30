@@ -19,9 +19,9 @@ class Announcement
   end
 
 
-  def self.play_youtube_audio(url, volume = 1.0)
+  def self.play_youtube_audio(url, volume = 1.0, skip_frames = 0)
     scale = (32768 * volume).to_i
-    command = %Q(wget -q -O - `youtube-dl -g #{url}` | ffmpeg -i - -f mp3 -vn -acodec libmp3lame - | mpg123 --scale #{scale} -)
+    command = %Q(wget -q -O - `youtube-dl -g #{url}` | ffmpeg -i - -f mp3 -vn -acodec libmp3lame - | mpg123 -k #{skip_frames} --scale #{scale} -)
     stop_youtube_audio
     @@player_thread = Thread.new do
       `#{command}`
