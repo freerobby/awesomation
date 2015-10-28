@@ -15,6 +15,8 @@ Run a rails console via `rails c` and run:
 
 This will create database entries for all devices on your local network.
 
+You may want to configure static IPs on your local network so that these don't change!
+
 That's it! You can now control your devices a la:
 
     switch = WemoSwitch.first
