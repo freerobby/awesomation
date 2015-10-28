@@ -14,6 +14,10 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+Dotenv.load(File.expand_path("../../.env.#{Rails.env}", __FILE__))
+# Dotenv::Railtie.load
+# Swap above lines after https://github.com/bkeepers/dotenv/issues/155 is resolved.
+
 module Awesomation
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
