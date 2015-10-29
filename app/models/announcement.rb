@@ -21,6 +21,7 @@ class Announcement
 
 
   def self.play_youtube_audio(url, volume = 1.0, skip_frames = 0)
+    `youtube-dl -x #{url} -o "#{Rails.root}/tmp/#{'%(title)s.%(ext)s'}"`
     filename = `youtube-dl -x #{url} -o "#{Rails.root}/tmp/#{'%(title)s.%(ext)s'}" --get-filename`.chomp
     stop_youtube_audio
     @@last_youtube_player_pid = Process.spawn(%Q(afplay "#{filename}"))
