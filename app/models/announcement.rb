@@ -20,7 +20,7 @@ class Announcement
   end
 
 
-  def self.play_youtube_audio(url, volume = 1.0, skip_frames = 0)
+  def self.play_youtube_audio(url)
     `youtube-dl -x #{url} -o "#{Rails.root}/tmp/#{'%(title)s.%(ext)s'}"`
     filename = `youtube-dl -x #{url} -o "#{Rails.root}/tmp/#{'%(title)s.%(ext)s'}" --get-filename`.chomp
     filename_wav = "#{filename}.wav"
