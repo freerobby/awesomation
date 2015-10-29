@@ -25,7 +25,7 @@ That's it! You can now control your devices a la:
 
 Once your devices are configured, you can control them by running a server:
 
-    rails s
+    rails s -b 0.0.0.0
 
 and making POST requests to turn them on and off:
 
@@ -38,4 +38,4 @@ You can announce things via the Announce API:
 
 Or play youtube audio!
 
-    curl --data "url=https://www.youtube.com/watch?v=AVr_6kE1vio&volume=0.5" http://localhost:3000/play_youtube_audio
+    curl --data "url=https://www.youtube.com/watch?v=B-UMKxUR2tU&volume=0.5" http://localhost:3000/play_youtube_audio
