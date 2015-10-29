@@ -6,7 +6,7 @@ class Announcement
 
   ALL_VOICES = FEMALE_VOICES + MALE_VOICES + NOVELTY_VOICES
 
-  @@player_thread = nil
+  @@last_youtube_player_pid = nil
 
   def self.random_voice
     ALL_VOICES.sample
@@ -23,16 +23,15 @@ class Announcement
   def self.play_youtube_audio(url, volume = 1.0, skip_frames = 0)
     filename = `youtube-dl -x #{url} -o "#{Rails.root}/tmp/#{'%(title)s.%(ext)s'}" --get-filename`.chomp
     stop_youtube_audio
-    @@player_thread = Thread.new do
-      system(%Q(afplay "#{filename}"))
-    end
-
+    @@last_youtube_player_pid = Process.spawn(%Q(afplay "#{filename}"))
+    
     true
   end
 
-
   def self.stop_youtube_audio
-    Thread.kill(@@player_thread) unless @@player_thread.nil?
-    @@player_thread = nil
+    if @@last_youtube_player_pid
+      Process.kill('TERM', @@last_youtube_player_pid)
+      @@last_youtube_player_pid = nil
+    end
   end
 end
