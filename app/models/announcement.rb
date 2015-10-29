@@ -23,8 +23,10 @@ class Announcement
   def self.play_youtube_audio(url, volume = 1.0, skip_frames = 0)
     `youtube-dl -x #{url} -o "#{Rails.root}/tmp/#{'%(title)s.%(ext)s'}"`
     filename = `youtube-dl -x #{url} -o "#{Rails.root}/tmp/#{'%(title)s.%(ext)s'}" --get-filename`.chomp
+    filename_wav = "#{filename}.wav"
+    `ffmpeg -i "#{filename}" -acodec pcm_u8 -ar 22050 "#{filename_wav}" -y`
     stop_youtube_audio
-    @@last_youtube_player_pid = Process.spawn(%Q(afplay "#{filename}"))
+    @@last_youtube_player_pid = Process.spawn(%Q(afplay "#{filename_wav}"))
     
     true
   end
