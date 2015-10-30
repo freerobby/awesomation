@@ -7,6 +7,12 @@ class WemoController < ApplicationController
     render text: 'OK'
   end
 
+  # Use Github web hook API to detect a push to master
+  def on_if_master_push
+    @switch.turn_on! if params[:ref] && params[:ref] == 'refs/heads/master'
+    render text: 'OK'
+  end
+
   def off
     @switch.turn_off!
     render text: 'OK'

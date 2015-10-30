@@ -8,6 +8,13 @@ describe WemoController do
     allow(@switch).to receive(:turn_on!)
     post :on, id: @switch.id
   end
+  it 'POST #on_if_master_push on master push' do
+    allow(@switch).to receive(:turn_on!)
+    post :on_if_master_push, id: @switch.id, ref: 'refs/heads/master'
+  end
+  it 'POST #on_if_master_push on other branch push' do
+    post :on_if_master_push, id: @switch.id, ref: 'foo'
+  end
   it 'POST #off' do
     allow(@switch).to receive(:turn_off!)
     post :off, id: @switch.id

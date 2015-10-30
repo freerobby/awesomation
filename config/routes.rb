@@ -2,10 +2,10 @@ Rails.application.routes.draw do
   post 'devices/:id/on' => 'wemo#on'
   post 'devices/:id/off' => 'wemo#off'
   post 'devices/:id/timer' => 'wemo#timer'
+  post 'devices/:id/on-if-master-push' => 'wemo#on_if_master_push'
   post 'say' => 'announcement#say'
   post 'play_youtube_audio' => 'announcement#play_youtube_audio'
   post 'stop_youtube_audio' => 'announcement#stop_youtube_audio'
-  post 'github' => 'github#receive'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
